@@ -19,8 +19,10 @@ For more information, see Licensing FAQ:
 
 https://docs.fabricators.ltd/docs/licenses/faq */
 
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 using Unifiedban.Next.Common;
 
 namespace Unifiedban.Next.Models.Telegram;
@@ -55,7 +57,22 @@ public class TGChat : Common.IUBChat
     [MaxLength(5)]
     public string SettingsLanguage { get; set; } = "en";
 
-    public string Configuration { get; set; }
+    public string ConfigurationJson
+    {
+        get => JsonConvert.SerializeObject(configuration);
+        set =>
+            configuration = JsonConvert.DeserializeObject<List<ConfigurationParameter>>(value) ??
+                            new List<ConfigurationParameter>();
+    }
+
+    [NotMapped]
+    private List<ConfigurationParameter> configuration { get; set; }
+    [NotMapped]
+    public List<ConfigurationParameter> Configuration
+    {
+        get => configuration;
+        set => ConfigurationJson = JsonConvert.SerializeObject(value); 
+    }
 
     [MaxLength(5)]
     public string CommandPrefix { get; set; } = "/";

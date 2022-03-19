@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Unifiedban.Next.Models;
 
@@ -11,9 +12,10 @@ using Unifiedban.Next.Models;
 namespace Unifiedban.Next.Models.Migrations
 {
     [DbContext(typeof(UBContext))]
-    partial class UBContextModelSnapshot : ModelSnapshot
+    [Migration("20220319163755_ubnext-RenameTGConfigColumn")]
+    partial class ubnextRenameTGConfigColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

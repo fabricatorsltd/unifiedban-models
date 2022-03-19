@@ -30,7 +30,7 @@ namespace Unifiedban.Next.Models;
 public class UBContext : DbContext
 {
     private static string _connectionString =
-        @"Server=.;Database=Unifiedban;Trusted_Connection=False;User Id=sa;Password=";
+        @"Server=.;Database=Unifiedban;Trusted_Connection=False;User Id=sa;Password=PietroDC2021}";
 
     private static readonly ValueConverter<string[], string> _stringArrayConverter = new (
         v => string.Join(";", v),
