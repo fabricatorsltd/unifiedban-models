@@ -42,7 +42,7 @@ public class TBroadcaster : IUBChat
         
     [MaxLength(40)]
     public string OwnerId { get; set; }
-    public virtual UBUser UBUser { get; set; }
+    public virtual UBUser Owner { get; set; }
         
     [MaxLength(100)]
     public string Title { get; set; }

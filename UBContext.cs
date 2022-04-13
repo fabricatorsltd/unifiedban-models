@@ -176,7 +176,7 @@ public class UBContext : DbContext
         modelBuilder.Entity<UBChatConfiguration>()
             .Property(e => e.AcceptedValues)
             .HasConversion(_stringArrayConverter, _stringArrayComparer)
-            .HasMaxLength(60);
+            .HasMaxLength(30);
         modelBuilder.Entity<UBChatConfiguration>()
             .Property(e => e.Platforms)
             .HasConversion(_stringArrayConverter, _stringArrayComparer)

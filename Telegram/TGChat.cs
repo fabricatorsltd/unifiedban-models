@@ -42,7 +42,7 @@ public class TGChat : Common.IUBChat
         
     [MaxLength(40)]
     public string OwnerId { get; set; }
-    public virtual UBUser UBUser { get; set; }
+    public virtual UBUser Owner { get; set; }
     public long TelegramChatId { get; set; }
         
     [MaxLength(100)]

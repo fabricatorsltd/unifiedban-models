@@ -46,9 +46,7 @@ public class UBChatConfiguration
     [MaxLength(20)]
     public string Type { get; set; } // bool, string, int
 
-    [MaxLength(30)]
     public string[] AcceptedValues { get; set; } // EF conversion, ; separated
 
-    [MaxLength(30)]
     public string[] Platforms { get; set; } // EF conversion, ; separated
 }
