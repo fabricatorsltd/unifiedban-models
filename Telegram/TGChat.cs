@@ -83,4 +83,7 @@ public class TGChat : Common.IUBChat
     public Enums.EnabledCommandsTypes EnabledCommandsType { get; set; }
 
     public string[] DisabledCommands { get; set; } // EF conversion, ; separated
+    
+    [MaxLength(10)]
+    public string LastVersion { get; set; } 
 }
