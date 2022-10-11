@@ -44,34 +44,30 @@ public class ConfigurationParameter
     public string[] AcceptedValues { get; set; } // EF conversion, ; separated
 
     public string[] Platforms { get; set; } // EF conversion, ; separated
-}
+    
+    [MaxLength(50)]
+    public string Value { get; set; }
 
-[NotMapped]
-public class UBChatConfigurationParameter<T> : ConfigurationParameter
-{
-    [Column(TypeName = "nvarchar(50)")]
-    public T Value { get; private set; }
-
-    public UBChatConfigurationParameter()
+    public ConfigurationParameter(){}
+    public ConfigurationParameter(string name, string value)
     {
-        Value = (T)Convert.ChangeType(DefaultValue, typeof(T));
-    }
-    public UBChatConfigurationParameter(T value)
-    {
+        ConfigurationParameterId = name;
         Value = value;
     }
     
     public void SetDefault()
     {
-        Value = (T) Convert.ChangeType(DefaultValue, typeof(T));
+        Value = DefaultValue;
     }
-    public bool SetValue(T newValue)
+    
+    public bool SetValue(string newValue)
     {
         if (!IsInRange(newValue)) return false;
         Value = newValue;
         return true;
     }
-    private bool IsInRange(T newValue)
+    
+    private bool IsInRange(string? newValue)
     {
         if (AcceptedValues.Length == 0) return true;
         if (newValue == null) return true;
@@ -87,9 +83,10 @@ public class UBChatConfigurationParameter<T> : ConfigurationParameter
                     return false;
             }
 
-            if (acceptedValue == newValue.ToString()) return true;
+            if (acceptedValue == newValue) return true;
         }
 
         return false;
     }
 }
+

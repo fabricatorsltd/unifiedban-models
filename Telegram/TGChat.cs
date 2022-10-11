@@ -22,6 +22,7 @@ https://docs.fabricators.ltd/docs/licenses/faq */
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Newtonsoft.Json;
 using Unifiedban.Next.Common;
 
@@ -86,4 +87,10 @@ public class TGChat : Common.IUBChat
     
     [MaxLength(10)]
     public string LastVersion { get; set; }
+    
+    public ConfigurationParameter GetConfigParam(string name, string defaultValue)
+    {
+        var config = Configuration.FirstOrDefault(x => x.ConfigurationParameterId == name);
+        return config ?? new ConfigurationParameter(name, defaultValue);
+    }
 }

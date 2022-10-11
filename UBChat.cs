@@ -59,15 +59,9 @@ public class UBChat
     public virtual DGuild DGuild { get; set; }
     public virtual TBroadcaster TBroadcaster { get; set; }
 
-    public UBChatConfigurationParameter<T> GetConfigParam<T>(string name, T defaultValue)
+    public ConfigurationParameter GetConfigParam(string name, string defaultValue)
     {
         var config = Configuration.FirstOrDefault(x => x.ConfigurationParameterId == name);
-        if (config == null)
-            return new UBChatConfigurationParameter<T>(defaultValue)
-            {
-                ConfigurationParameterId = name
-            };
-
-        return (UBChatConfigurationParameter<T>)config;
+        return config ?? new ConfigurationParameter(name, defaultValue);
     }
 }
