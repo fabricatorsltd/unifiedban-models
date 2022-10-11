@@ -72,7 +72,6 @@ public class UBContext : DbContext
 
     public DbSet<ConfigurationParameter> ConfigurationParameters { get; set; }
     public DbSet<UBChat> UBChats { get; set; }
-    public DbSet<UBChatConfiguration> UBChatConfigurations { get; set; }
     public DbSet<UBUser> UBUsers { get; set; }
     public DbSet<UBStaff> UBStaffs { get; set; }
     public DbSet<Module> Modules { get; set; }
@@ -172,17 +171,6 @@ public class UBContext : DbContext
             .Property(e => e.Platforms)
             .HasConversion(_stringArrayConverter, _stringArrayComparer)
             .HasMaxLength(60);
-
-        modelBuilder.Entity<UBChatConfiguration>()
-            .Property(e => e.AcceptedValues)
-            .HasConversion(_stringArrayConverter, _stringArrayComparer)
-            .HasMaxLength(30);
-        modelBuilder.Entity<UBChatConfiguration>()
-            .Property(e => e.Platforms)
-            .HasConversion(_stringArrayConverter, _stringArrayComparer)
-            .HasMaxLength(60);
-        modelBuilder.Entity<UBChatConfiguration>()
-            .HasKey(x => new { x.ChatId, x.ConfigurationParameterId, x.Platforms });
 
         modelBuilder.Entity<UBStaff>()
             .HasKey(x => new { x.UBUserId, x.Platform });

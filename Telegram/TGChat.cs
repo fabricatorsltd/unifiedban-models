@@ -1,4 +1,4 @@
-﻿/* unified/ban - Management and protection systems
+/* unified/ban - Management and protection systems
 
 © fabricators SRL, https://fabricators.ltd , https://unifiedban.solutions
 
@@ -85,5 +85,5 @@ public class TGChat : Common.IUBChat
     public string[] DisabledCommands { get; set; } // EF conversion, ; separated
     
     [MaxLength(10)]
-    public string LastVersion { get; set; } 
+    public string LastVersion { get; set; }
 }
