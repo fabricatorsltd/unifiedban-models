@@ -91,6 +91,17 @@ public class TGChat : Common.IUBChat
     public ConfigurationParameter GetConfigParam(string name, string defaultValue)
     {
         var config = Configuration.FirstOrDefault(x => x.ConfigurationParameterId == name);
-        return config ?? new ConfigurationParameter(name, defaultValue);
+        if(config == null) return new ConfigurationParameter(name, defaultValue);
+
+        if (config.Override == Enums.Overrides.Group)
+        {
+            return Chat.GetConfigParam(name, defaultValue);
+        }
+        if (config.Override == Enums.Overrides.Team)
+        {
+            // TODO
+        }
+
+        return config;
     }
 }
